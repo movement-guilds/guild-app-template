@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { SessionProvider } from "next-auth/react";
-import { WalletProvider } from "@/lib/wallet-provider";
+import { Providers } from "@/components/Providers";
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
@@ -13,12 +12,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="bg-movement-dark min-h-screen text-white">
-        <SessionProvider>
-          <WalletProvider>
-            <Header />
-            <main>{children}</main>
-          </WalletProvider>
-        </SessionProvider>
+        <Providers>
+          <Header />
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
