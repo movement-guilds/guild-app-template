@@ -169,7 +169,59 @@ Open http://localhost:3000
 
 ## Environment Variables Reference
 
-See [.env.example](./.env.example) for all available variables with descriptions.
+### Discord
+
+| Variable | Required | Where to get it |
+|----------|----------|-----------------|
+| `DISCORD_CLIENT_ID` | Yes | [Discord Developer Portal](https://discord.com/developers/applications) → Your App → OAuth2 → Client ID |
+| `DISCORD_CLIENT_SECRET` | Yes | Discord Developer Portal → Your App → OAuth2 → Client Secret |
+| `DISCORD_GUILD_ID` | Yes | Discord App → Enable Developer Mode (Settings → Advanced) → Right-click server → Copy Server ID |
+| `DISCORD_ADMIN_ROLE_ID` | No | Discord → Server Settings → Roles → Right-click role → Copy ID |
+| `DISCORD_MOD_ROLE_ID` | No | Discord → Server Settings → Roles → Right-click role → Copy ID |
+
+### NextAuth
+
+| Variable | Required | Where to get it |
+|----------|----------|-----------------|
+| `NEXTAUTH_SECRET` | Yes | Run: `openssl rand -base64 32` |
+| `NEXTAUTH_URL` | No | Only needed in production. Leave blank for local dev and Vercel previews (auto-detected) |
+
+### Supabase
+
+| Variable | Required | Where to get it |
+|----------|----------|-----------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes | [Supabase Dashboard](https://supabase.com/dashboard) → Your Project → Settings → API → Project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase Dashboard → Settings → API → `anon` `public` key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Supabase Dashboard → Settings → API → `service_role` key (click Reveal) |
+| `SUPABASE_PROJECT_REF` | CLI only | Supabase Dashboard → Settings → General → Reference ID. Used for `supabase link`, not at runtime |
+
+### Upstash Redis
+
+| Variable | Required | Where to get it |
+|----------|----------|-----------------|
+| `UPSTASH_REDIS_REST_URL` | Yes | [Upstash Console](https://console.upstash.com) → Create Database → REST API section |
+| `UPSTASH_REDIS_REST_TOKEN` | Yes | Upstash Console → Your Database → REST API section |
+
+> Note: Redis is used for wallet-link nonce storage. Currently required even if `REQUIRE_WALLET_LINK=false`.
+
+### Movement Network
+
+| Variable | Required | Default |
+|----------|----------|---------|
+| `MOVEMENT_RPC_MAINNET` | No | `https://mainnet.movementnetwork.xyz/v1` |
+| `MOVEMENT_RPC_TESTNET` | No | `https://testnet.movementnetwork.xyz/v1` |
+
+### Feature Flags
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `REQUIRE_WALLET_LINK` | No | `false` | Set to `true` to require users to link a Movement wallet after Discord login |
+
+### Error Tracking
+
+| Variable | Required | Where to get it |
+|----------|----------|-----------------|
+| `SENTRY_DSN` | No | [Sentry Dashboard](https://sentry.io) → Your Project → Settings → Client Keys (DSN) |
 
 ---
 
